@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "naitao/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "naitao/multi-server",
+      "hostname": "api",
+      "essential": false
+    }
+    {
+      "name": "workder",
+      "image": "naitao/multi-workder",
+      "hostname": "workder",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "naitao/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}
